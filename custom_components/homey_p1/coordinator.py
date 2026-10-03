@@ -64,8 +64,17 @@ class HomeyP1Coordinator(DataUpdateCoordinator[dict[str, object]]):
         return self._available
 
     async def async_start(self) -> None:
-        """Start the websocket listener."""
-        self._task = self.hass.async_create_task(self._run())
+        """Start the websocket listener.
+
+        The listener runs for the lifetime of the config entry, so it must be
+        a background task. ``hass.async_create_task`` registers a *tracked*
+        task, and Home Assistant waits for all tracked tasks before it
+        finishes booting; a never-ending tracked task therefore holds the
+        whole startup until the bootstrap timeout (5 minutes) fires.
+        """
+        self._task = self.hass.async_create_background_task(
+            self._run(), f"homey_p1 websocket listener ({self.host})"
+        )
 
     async def async_shutdown(self) -> None:
         """Stop the websocket listener."""
@@ -197,8 +206,9 @@ class HomeyP1Coordinator(DataUpdateCoordinator[dict[str, object]]):
         if not self._available or self._unavailable_task:
             return
 
-        self._unavailable_task = self.hass.async_create_task(
-            self._async_mark_unavailable_after_grace()
+        self._unavailable_task = self.hass.async_create_background_task(
+            self._async_mark_unavailable_after_grace(),
+            f"homey_p1 unavailable grace timer ({self.host})",
         )
 
     async def _async_mark_unavailable_after_grace(self) -> None:
