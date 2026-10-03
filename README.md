@@ -1,12 +1,18 @@
 # Local Homey P1 for Home Assistant
 
-[![GitHub release](https://img.shields.io/github/release/chill-uk/homey-p1-ha?include_prereleases=&sort=semver&color=blue)](https://github.com/chill-uk/homey-p1-ha/releases/)
-[![issues - homey-p1-ha](https://img.shields.io/github/issues/chill-uk/homey-p1-ha)](https://github.com/chill-uk/homey-p1-ha/issues)
-[![GH-code-size](https://img.shields.io/github/languages/code-size/chill-uk/homey-p1-ha?color=red)](https://github.com/chill-uk/homey-p1-ha)
-[![GH-last-commit](https://img.shields.io/github/last-commit/chill-uk/homey-p1-ha?style=flat-square)](https://github.com/chill-uk/homey-p1-ha/commits/main)
+[![Latest release](https://img.shields.io/github/v/release/ptorsten/homey-p1-ha?sort=semver&color=blue&label=latest%20release)](https://github.com/ptorsten/homey-p1-ha/releases/latest)
+[![Release date](https://img.shields.io/github/release-date/ptorsten/homey-p1-ha?label=released)](https://github.com/ptorsten/homey-p1-ha/releases/latest)
+[![Upstream release](https://img.shields.io/github/v/release/chill-uk/homey-p1-ha?sort=semver&color=lightgrey&label=upstream)](https://github.com/chill-uk/homey-p1-ha/releases/)
+[![GH-last-commit](https://img.shields.io/github/last-commit/ptorsten/homey-p1-ha?style=flat-square)](https://github.com/ptorsten/homey-p1-ha/commits/main)
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
-[![Validation](https://github.com/chill-uk/homey-p1-ha/actions/workflows/validate.yml/badge.svg)](https://github.com/chill-uk/homey-p1-ha/actions/workflows/validate.yml)
-![GitHub Downloads](https://img.shields.io/github/downloads/chill-uk/homey-p1-ha/total)
+
+> [!IMPORTANT]
+> **This is a fork of [chill-uk/homey-p1-ha](https://github.com/chill-uk/homey-p1-ha).**
+> Latest fork release: **[v0.4.1](https://github.com/ptorsten/homey-p1-ha/releases/tag/v0.4.1)** (2026-10-03), based on upstream v0.4.0.
+> It runs the websocket listener as a Home Assistant background task so the integration no longer
+> holds Home Assistant startup for the 5-minute bootstrap timeout. Otherwise identical to upstream.
+> HACS custom repository: `ptorsten/homey-p1-ha` (category *Integration*).
+
 
 This repository contains a custom Home Assistant integration that connects to a Homey Energy Dongle over its local WebSocket API and exposes common DSMR readings as sensors.
 
